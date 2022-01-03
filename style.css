@@ -1,0 +1,84 @@
+.mainHeader {
+    font-weight: bold;
+    text-align: center;
+    background-color: #264454;
+    color: white;
+    height: 65px;
+}
+
+.search {
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.cityStats {
+    width: 75%;
+    float: left;
+    height: 250px;
+    margin-right: 25px;
+    border: black 5px solid;
+}
+
+.cityName {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.temp, .wind, .humidity, .uvindex {
+    font-size: 18px;
+    margin: 15px 0px 15px 10px;
+}
+
+.citySearch {
+   
+    height: auto;
+    width: 20%;
+    float: left;
+    border-bottom: 2px black solid;
+    margin-left: 20px;
+    margin-right: 25px;
+}
+
+.searchButton {
+    height: 40px;
+    font-size: 25px;
+}
+
+.cityInput {
+    font-size: 25px;
+}
+
+.forecast {
+    /* display: flex; */
+}
+
+.forecastCards {
+    display: flex;
+}
+
+.card {
+    border: 2px solid black;
+    height: 225px;
+    width: 200px;
+    margin: 15px;
+    background-color: #264454;
+    color: white;
+}
+
+.cardDate {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.cardImage {
+    width: 30px;
+    height: 20px;
+}
+
+.cardTemp, .cardWind, .cardHumidity {
+    margin: 5px;
+    font-size: 18px;
+}
