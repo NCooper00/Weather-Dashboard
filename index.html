@@ -9,6 +9,7 @@
 
 
     <link rel="stylesheet" href="style.css">
+    
 </head>
 
 <header>
@@ -22,7 +23,7 @@
         <form class="search">
             Search for a City:
             <input id="cityInput" type="text" name="citiesName" size="19">
-            <button class="searchButton">Search</button>
+            <button class="searchButton" onclick="findCoords()">Search</button>
         </form>
 
         
@@ -50,7 +51,7 @@
     </div>
 
     <div class="forecast">
-        <h2>
+        <h2 id="forecastHead">
             5-Day Forecast
         </h2>
 
@@ -114,6 +115,10 @@
     </div>
 
 
-    <script src="script.js"></script>
+    
 </body>
+
+
+<script src="script.js"></script>
+
 </html>
