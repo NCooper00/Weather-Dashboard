@@ -22,14 +22,19 @@
 }
 
 .cityName {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     margin: 10px;
 }
 
 .temp, .wind, .humidity, .uvindex {
     font-size: 18px;
-    margin: 15px 0px 15px 10px;
+    margin: 15px 0px 5px 10px;
+}
+
+.maintemp {
+    font-size: 18px;
+    margin: 15px 0px 5px 10px;
 }
 
 .citySearch {
@@ -62,7 +67,7 @@
 .card {
     border: 2px solid black;
     height: 225px;
-    width: 200px;
+    width: 250px;
     margin: 15px;
     background-color: #264454;
     color: white;

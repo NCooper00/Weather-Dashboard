@@ -1,55 +1,63 @@
-var APIKey = "317001a987fd9756a3e8307ebf9f0f3b" + "&units=imperial";
+var APIKey = "f199dda3b5bf9b230995121924fee94f" + "&units=imperial";
 
-var city;
+
 
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-// console.log(queryURL);
+
 
 
 var weatherData;
+var favoriteData = {
+
+};
 
 var nameDateEl = document.getElementsByClassName("cityName");
+var maintempEl = document.getElementsByClassName("maintemp");
 var tempEl = document.getElementsByClassName("temp");
 var windEl = document.getElementsByClassName("wind");
 var humidityEl = document.getElementsByClassName("humidity");
 var uvindexEl = document.getElementsByClassName("uvindex");
 
-var apilatlonURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude +"&lon=" + longitude +"&exclude=current,minutely,hourly&appid=" + APIKey;
 
-function determineCity(){
-    city = document.getElementById("cityInput").value;
-}
-// determineCity();
-console.log(city);
 
-function findCoords() {
-    determineCity()
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
+
+var cityInput = document.getElementById('cityInput');
+document.querySelector('form.search').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+
+});
+
+var city = cityInput.value;
+
+
+
+
+function findCoords(latitude, longitude) {
+
+    var cityInput = document.getElementById('cityInput');
+    document.querySelector('form.search').addEventListener('submit', (e) => {
+        e.preventDefault();
+    
+        console.log(cityInput.value)
+    });
+
+    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput.value + "&appid=" + APIKey;
+    
+
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
                     weatherData = data;
-                    renderWeather();
-                });
-            } else {
-                alert("Error: " + response.statusText);
-            }
-        })
-        .catch(function (error) {
-            alert("Did not get a response");
-        });
-};
+                    
+                    var latitude = weatherData.coord.lat;
+                    var longitude = weatherData.coord.lon;
 
-function getWeatherData(latitude, longitude) {
-    determineCity();
-    // var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-    fetch(queryURL)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    weatherData = data;
-                    renderWeather();
+                    
+                    getWeatherData(latitude, longitude);
+
                 });
             } else {
                 alert("Error: " + response.statusText);
@@ -58,25 +66,44 @@ function getWeatherData(latitude, longitude) {
         .catch(function (error) {
             alert("Did not get a response");
         });
+
+
 };
 
 
 
     function renderWeather() {
         for (var i = 0; i < nameDateEl.length; i++) {
-            var current = weatherData;
+            var weather = weatherData.daily[i];
     
-            // imgEl[i].src = "assets/images/" + current.weather[0].description + ".jpg"
-    
-            nameDateEl[i].textContent = unixConversion(current.dt);
-            // dayEl[i].textContent = current.temp.day + "\u00B0F";
-            // maxEl[i].textContent = "High: " + current.temp.max + "\u00B0F";
-            // minEl[i].textContent = "Low: " + current.temp.min + "\u00B0F";
-            windEl[i].textContent = "Wind: " + current.wind.speed + " MPH";
-            // weatherMainEl[i].textContent = current.weather[0].main;
-            // weatherDesEl[i].textContent = current.weather[0].description;
-    
+            nameDateEl[i].textContent = cityInput.value + ", " + unixConversion(weather.dt);
+            tempEl[i].textContent = "Temp: " + weather.temp.day + "\u00B0F";
+            windEl[i].textContent = "Wind: " + weather.wind_speed + " MPH";
+            humidityEl[i].textContent = "Humidity: " + weather.humidity;
+            uvindexEl[0].textContent = "UV Index: " + weatherData.current.uvi;
         }
+    };
+
+    
+
+    function getWeatherData(latitude, longitude) {
+        
+        var latlonApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=minutely,hourly&appid=" + APIKey;
+        fetch(latlonApi)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (data) {
+                        weatherData = data;
+                        console.log(latlonApi);
+                       renderWeather(data);
+                    });
+                } else {
+                    alert("Error: " + response.statusText);
+                }
+            })
+            .catch(function (error) {
+                alert("Did not get a response");
+            });
     };
 
 
@@ -86,4 +113,13 @@ function getWeatherData(latitude, longitude) {
         temp = temp.substring(0, temp.length - 4);
         return temp;
     }
-    // renderWeather();
+
+
+    function saveFavoriteData() {
+        localStorage.setItem("favoriteData", JSON.stringify(favoriteData));
+    }
+
+    function loadFavoriteData() {
+        favoriteData = JSON.parse(localStorage.getItem("favoriteData"));
+    }
+    
