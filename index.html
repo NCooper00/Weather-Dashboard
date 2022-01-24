@@ -20,96 +20,101 @@
 
 
     <div class="citySearch">
+        
         <form class="search">
             Search for a City:
             <input id="cityInput" type="text" name="citiesName" size="19" placeholder="Type a city name">
             <button class="searchButton" onclick="findCoords()">Search</button>
         </form>
 
-        
+        <ul class="savedCities">
+
+        </ul>
 
     </div>
 
+    
 
+    <div class="weatherStats">
+        <div class="cityStats">
+            <div class="cityName">
+                City (1/2/2022)
+            </div>
+            <div class="temp">
+                Temp:
+            </div>
+            <div class="wind">
+                Wind:
+            </div>
+            <div class="humidity">
+                Humidity:
+            </div>
+            <div class="uvindex">
+                UV Index:
+            </div>
+        </div>
 
-    <div class="cityStats">
-        <div class="cityName">
-            City (1/2/2022)
-        </div>
-        <div class="temp">
-            Temp:
-        </div>
-        <div class="wind">
-            Wind:
-        </div>
-        <div class="humidity">
-            Humidity:
-        </div>
-        <div class="uvindex">
-            UV Index:
-        </div>
-    </div>
+        <div class="forecast">
+            <h2 id="forecastHead">
+                5-Day Forecast
+            </h2>
 
-    <div class="forecast">
-        <h2 id="forecastHead">
-            5-Day Forecast
-        </h2>
-
-        <div class="forecastCards">
-            <div class="card">
-                <div class="cityName">
-                    1/2/2022
+            <div class="forecastCards">
+                <div class="card">
+                    <div class="cityName">
+                        1/2/2022
+                    </div>
+                    <div>
+                        <img class="cardImage" src="">
+                    </div>
+                    <span class="temp">Temp:</span>
+                    <span class="wind">Wind:</span>
+                    <span class="humidity">Humidity:</span>
                 </div>
-                <div class="cardImage">
-                    <img src="">
+                <div class="card">
+                    <div class="cityName">
+                        1/2/2022
+                    </div>
+                    <div>
+                        <img class="cardImage" src="">
+                    </div>
+                    <span class="temp">Temp:</span>
+                    <span class="wind">Wind:</span>
+                    <span class="humidity">Humidity:</span>
                 </div>
-                <span class="temp">Temp:</span>
-                <span class="wind">Wind:</span>
-                <span class="humidity">Humidity:</span>
-            </div>
-            <div class="card">
-                <div class="cityName">
-                    1/2/2022
+                <div class="card">
+                    <div class="cityName">
+                        1/2/2022
+                    </div>
+                    <div>
+                        <img class="cardImage" src="">
+                    </div>
+                    <span class="temp">Temp:</span>
+                    <span class="wind">Wind:</span>
+                    <span class="humidity">Humidity:</span>
                 </div>
-                <div class="cardImage">
-                    <img src="">
+                <div class="card">
+                    <div class="cityName">
+                        1/2/2022
+                    </div>
+                    <div>
+                        <img class="cardImage" src="">
+                    </div>
+                    <span class="temp">Temp:</span>
+                    <span class="wind">Wind:</span>
+                    <span class="humidity">Humidity:</span>
                 </div>
-                <span class="temp">Temp:</span>
-                <span class="wind">Wind:</span>
-                <span class="humidity">Humidity:</span>
-            </div>
-            <div class="card">
-                <div class="cityName">
-                    1/2/2022
+                <div class="card">
+                    <div class="cityName">
+                        1/2/2022
+                    </div>
+                    <div>
+                        <img class="cardImage" src="">
+                    </div>
+                    <span class="temp">Temp:</span>
+                    <span class="wind">Wind:</span>
+                    <span class="humidity">Humidity:</span>
                 </div>
-                <div class="cardImage">
-                    <img src="">
-                </div>
-                <span class="temp">Temp:</span>
-                <span class="wind">Wind:</span>
-                <span class="humidity">Humidity:</span>
-            </div>
-            <div class="card">
-                <div class="cityName">
-                    1/2/2022
-                </div>
-                <div class="cardImage">
-                    <img src="">
-                </div>
-                <span class="temp">Temp:</span>
-                <span class="wind">Wind:</span>
-                <span class="humidity">Humidity:</span>
-            </div>
-            <div class="card">
-                <div class="cityName">
-                    1/2/2022
-                </div>
-                <div class="cardImage">
-                    <img src="">
-                </div>
-                <span class="temp">Temp:</span>
-                <span class="wind">Wind:</span>
-                <span class="humidity">Humidity:</span>
             </div>
         </div>
     </div>
