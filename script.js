@@ -4,9 +4,6 @@ var APIKey = "f199dda3b5bf9b230995121924fee94f" + "&units=imperial";
 
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
-var cities = {
-
-};
 
 var weatherData;
 
@@ -112,33 +109,46 @@ function findCoords(latitude, longitude) {
 
     
     
-    var savedCityCollection = [];
+    var savedCityCollection = JSON.parse(localStorage.getItem('cities')) || [];
+    console.log(savedCityCollection)
     
-    document.querySelector(".searchButton").addEventListener("click", (cities) => {
+    document.querySelector(".searchButton").addEventListener("click", (event) => {
+        event.preventDefault();
         cities = document.getElementById('cityInput');
         savedCityCollection.push(cities.value);
         localStorage.setItem("cities", JSON.stringify(savedCityCollection));
-        console.log(cities.length);
 
-        // for (var i = 0; i < cities.length; i++) {
-        var ulEl = document.querySelector("ul");
-        var liEl = document.createElement('li');
-        ulEl.appendChild(liEl);
+        
+        console.log(savedCityCollection[0])
 
-        document.querySelector('li').setAttribute("onclick", "searchSaved()");
-        document.querySelector('li').setAttribute("id", "savedCityList");
-
-        const liNumber = document.querySelectorAll("li");
-
-
-        for (var i = 0; i < liNumber.length; i++)
-        document.querySelector("li").append(cities.value);
-
-
-        // let div = document.getElementById("savedCityList")
-        // div.append(cities[i]);
-        // };
+        
     });
+
+
+
+    const searchListUl = document.querySelector('.savedCities');
+    let li = document.createElement('li');
+    // for (i = 0; i < savedCityCollection.length; i++) {
+
+
+        savedCityCollection.forEach(element => {
+            var li = document.createElement("li");
+            var text = document.createTextNode(element);
+            li.appendChild(text);
+            searchListUl.appendChild(li);
+            var liList = document.querySelectorAll('li');
+            for (i=0; i<liList.length; i++) {
+                liList[i].style.cursor = "pointer";
+                liList[i].addEventListener('click', (event) => {
+                    var cityInput = document.getElementById('cityInput');
+                    console.log(event.currentTarget.textContent)
+                    cityInput.value = event.currentTarget.textContent;
+                    findCoords();
+                })
+            }
+            
+        });
+    // }
 
     function loadFavoriteData() {
         cities = JSON.parse(localStorage.getItem("cities"));
@@ -150,34 +160,3 @@ function findCoords(latitude, longitude) {
        const liCity = document.getElementById("savedCityList").textContent;
        inputSpace.append(liCity);
     }
-
-
-    // saveBtnEl.addEventListener("click", function() {
-    //     var title = saveBtnEl.dataset.title;
-    //     console.log(title);
-    //         favoriteData[title] = { 
-    //             longitude: saveBtnEl.dataset.longitude,
-    //             latitude: saveBtnEl.dataset.latitude,
-    //             text: saveBtnEl.dataset.bodyText,
-    //             image: saveBtnEl.dataset.image
-    //         };
-    //     saveFavoriteData();
-    //     renderFavorite();
-    // });
-
-
-    // function renderFavorite() {
-    //     favoriteBoxEl.innerHTML = "";
-    //     for (var [key] of Object.entries(favoriteData)) {
-    //         searchButton.insertAdjacentHTML("beforeend", `<option>${key}</option>`);
-    //     }
-    // }
-
-    // function saveFavoriteData() {
-    //     localStorage.setItem("favoriteData", JSON.stringify(favoriteData));
-    // }
-
-    // function loadFavoriteData() {
-    //     favoriteData = JSON.parse(localStorage.getItem("favoriteData"));
-    // }
-    
